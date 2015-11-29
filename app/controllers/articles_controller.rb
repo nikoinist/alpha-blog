@@ -5,16 +5,16 @@ class ArticlesController < ApplicationController
   end
   def create
     #render plain: params[:article].inspect
-    @article = Article.new(article_params)
-    if @article.save
+    @article = Article.new(article_params) #kreira novi article hash sa parametrima
+    if @article.save #ako prođe verifikaciju
       flash[:notice] = "article was sucesfully created"
       redirect_to article_path(@article)
-    else
+    else #ako ne prođe verifikaciju
       render 'new'
     end
   end
   
-  def show
+  def show #prikaži article
     @article = Article.find(params[:id])
   
   
@@ -22,7 +22,7 @@ class ArticlesController < ApplicationController
   
   
   private
-    def article_params
+    def article_params #validacija parametara
       params.require(:article).permit(:title, :description)
     end
   
