@@ -13,7 +13,7 @@ class ArticlesController < ApplicationController
     #render plain: params[:article].inspect
     @article = Article.new(article_params) #kreira novi article hash sa parametrima
     if @article.save #ako prođe verifikaciju
-      flash[:notice] = "article was sucesfully created"
+      flash[:success] = "article was sucesfully created"
       redirect_to article_path(@article)
     else #ako ne prođe verifikaciju
       render 'new'
@@ -31,7 +31,7 @@ class ArticlesController < ApplicationController
   def update
    
     if @article.update(article_params)
-      flash[:notice] = "Article was sucesfully updated"
+      flash[:success] = "Article was sucesfully updated"
       redirect_to article_path(@article)
     else
       render 'edit'
@@ -41,7 +41,7 @@ class ArticlesController < ApplicationController
   def destroy
     
     @article.destroy
-    flash[:notice] = "Article was sucesfully destroyed"
+    flash[:danger] = "Article was sucesfully destroyed"
     redirect_to articles_path
   end
   
