@@ -10,8 +10,10 @@ class ArticlesController < ApplicationController
     @article = Article.new
   end
   def create
+    debugger
     #render plain: params[:article].inspect
     @article = Article.new(article_params) #kreira novi article hash sa parametrima
+    @article.user = User.first
     if @article.save #ako prođe verifikaciju
       flash[:success] = "article was sucesfully created"
       redirect_to article_path(@article)
